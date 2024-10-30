@@ -1,0 +1,18 @@
+1->...->10->11->...->14->...->15
+         |            |
+         |            +->16->...->20
+         +->21->...->30(final version)
+
+15:
+Until version 15, me gradually changed torch code into JAX.
+However, when it comes to converting Mamba2MLHeadModel to JAX implemenatation, no state-of-art AI model could readily migrate the code snippets, even o1-preview could not.
+So, me, human-general-intelligence started to intervene.
+20:
+Succeeded to convert the Mamba2MLHeadModel codes in JAX.
+But me found out that only the code can load 1.7B model correctly.
+Also, the difference between two outputs from torch and JAX are about 1e-3, which is not small variance.
+Stepping back, the 10th and 11th version still works correctly, and in the same time the error is about 1e-5.
+Found out that A_log precision greatly matters for the coincidence of the outputs.
+When A_log is loaded as float32, the relative error is seemingly less than 1e-4.
+30:
+Restarting from version 10, almost all the codes are migrated to JAX implementation.
